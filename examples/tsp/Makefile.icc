@@ -1,0 +1,7 @@
+CXX=icc
+FLAGS=-O3 
+CXXFLAGS = $(FLAGS) -I../../system_include -I../../include -I../../../boost_1_32_0 -DNDEBUG
+SRCS = my_problem.cc tsp_prob.cc tour.cc candidate_lists.cc tsp_eax.cpp
+LIBS=../../../libboost_serialization-il-1_32.a ../../../libsprng-icc-nompi.a -static
+my_problem: $(SRCS)
+	$(CXX) -o $@ $+ $(LIBS) $(CXXFLAGS)

@@ -1,0 +1,4 @@
+CXX=CC
+FLAGS=-O3 -mp -diag_suppress 1174
+
+include Makefile.common

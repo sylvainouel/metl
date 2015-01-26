@@ -1,0 +1,15 @@
+metl: A generic framework for sequential and parallel metaheuristics
+Copyright (c) 2005-2015, Sylvain Ouellet
+
+I wrote this framework for the development of sequential and parallel
+metaheuristics as part of my master thesis in 2005. Unfortunetly, I
+left it gather dust and bit rot on my hard disk for too long. 
+
+The code dates a bit, but I still think it is very good. I decided to
+distribute it in the hope it will be useful for someone. 
+
+If you find it to be useful for you, I'd appreciate if you drop me a
+line.
+
+Sylvain Ouellet
+sylvainouel@gmail.com

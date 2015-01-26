@@ -1,0 +1,24 @@
+This directory contains a script that can be used to generate most
+possible metaheuristics given user supplied concepts and the templates
+from the framework.
+
+This was created for testing purpose. The list generated can be
+compiled, allowing you to check that all algorithms works. Feel free
+to play with it. The magic is in the "expand" function. It accepts a
+template and does recursive substitution in it. "Symbols" beginning
+with * are not looked up for recurcive subtitution themselft.
+
+For example:
+
+set a {*a1 *a2}
+set b {*b1 b2}
+set b2 {*b21 *b22}
+
+set x [expand a<b>]
+puts $x
+
+produces:
+*a1<*b1> *a1<*b21> *a1<*b22> *a2<*b1> *a2<*b21> *a2<*b22>
+
+
+

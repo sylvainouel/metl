@@ -1,0 +1,14 @@
+#CXXFLAGS = $(FLAGS) -I../../include -I/usr/include/sprng -DNDEBUG -DUSE_PAR
+CXXFLAGS = $(FLAGS) -I../../system_include -I../../include -I../../../boost_1_32_0 -I/usr/include/sprng 
+SRCS = my_problem.cc tsp_prob.cc tour.cc candidate_lists.cc tsp_eax.cc
+OBJECTS = my_problem.o tsp_prob.o tour.o candidate_lists.o tsp_eax.o
+LDFLAGS = -L../../lib -lm -lsprng -lgmp ${LIBS}
+
+my_problem: $(OBJECTS) 
+	${CXX} $+ -o $@ ${CXXFLAGS} $(LDFLAGS) 
+
+
+.PHONY: clean
+
+clean:
+	rm -f *.o *.rpo *.ii *.ti my_problem *~

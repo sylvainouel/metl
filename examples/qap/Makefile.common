@@ -1,0 +1,14 @@
+CXXFLAGS = $(FLAGS) -I../../system_include -I../../../boost_1_32_0/ -I../../include -I/usr/include/sprng -DNDEBUG
+#CXXFLAGS = $(FLAGS) -I../../system_include -I../../../boost_1_32_0/ -I../../include -I/usr/include/sprng -DNDEBUG -DUSE_MPI
+SRCS = qap.cc qap_prob.cc 
+OBJECTS = qap.o qap_prob.o
+
+
+my_problem: $(OBJECTS) 
+	${CXX} $+ -o $@ ${CXXFLAGS} $(LDFLAGS)
+
+
+.PHONY: clean
+
+clean:
+	rm -f *.o *.rpo *.ii *.ti my_problem *~

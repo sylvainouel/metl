@@ -1,0 +1,5 @@
+CXX=icc
+CXXFLAGS=-O3 -I../../system_include -I../../../boost_1_32_0/ -I../../include -I/usr/include/sprng -DNDEBUG
+LIBS=../../../libboost_serialization-il-1_32.a ../../../libsprng-icc-nompi.a -static
+my_problem: qap.cc qap_prob.cc
+	$(CXX) $(CXXFLAGS) -o $@ $+ $(LIBS)

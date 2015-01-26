@@ -1,0 +1,7 @@
+CXX=icc
+FLAGS=-openmp -DNDEBUG
+CXXFLAGS = $(FLAGS) -O3 -I../../system_include -I../../include -I../../../boost_1_32_0 
+SRCS = my_problem.cc cell2switch.cc
+LIBS=../../../libboost_serialization-il-1_32.a ../../../libsprng-icc-nompi.a -static
+my_problem: $(SRCS)
+	$(CXX) -o $@ $+ $(LIBS) $(CXXFLAGS)

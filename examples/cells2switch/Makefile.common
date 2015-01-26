@@ -1,0 +1,14 @@
+#CXXFLAGS=$(FLAGS) -I../../include -I/usr/include/sprng -DNDEBUG -DUSE_PAR
+CXXFLAGS=$(FLAGS) -I../../include -I../../system_include -I/usr/include/sprng -I../../../boost_1_32_0/  -DNDEBUG
+
+
+SRCS = my_problem.cc cell2switch.cc 
+OBJECTS = my_problem.o cell2switch.o 
+
+my_problem: $(OBJECTS) 
+	${CXX} $+ -o $@ ${CXXFLAGS} $(LDFLAGS)
+
+.PHONY: clean
+
+clean:
+	rm -f *.o *.rpo *.ti *.ii my_problem *~

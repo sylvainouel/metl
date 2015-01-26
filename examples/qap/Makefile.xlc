@@ -1,0 +1,11 @@
+CXX=xlc++_r
+FLAGS=-O3 -DBOOST_NO_EXCEPTIONS -qsmp=omp -DXLC_WORKAROUND -DUSE_PAR -I../../../boost_1_33_0
+LDFLAGS = ../../../libsprng-nompi.a
+
+
+include Makefile.common
+
+.PHONY: depend
+depend:
+	gccmakedep -- $(CXXFLAGS) -- $(SRCS) 
+# DO NOT DELETE

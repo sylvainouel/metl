@@ -1,0 +1,4 @@
+CXX=pgCC
+FLAGS=-O3 -fastsse -Minline=levels:10 --diag_suppress 177 --display_error_number --exceptions 
+LIBS=~/boost_1_32_0/libs/serialization/src/*.o
+include Makefile.common

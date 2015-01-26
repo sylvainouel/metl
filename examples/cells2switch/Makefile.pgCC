@@ -1,0 +1,8 @@
+CXX=pgCC
+FLAGS=-O3 -DPGI --diag_suppress 177 --display_error_number -mp
+#FLAGS=-O3 -DPGI -Mmpi -mp --diag_suppress 177 --display_error_number
+LDFLAGS = -L../../lib -lm ../../../libsprng-pgcc-nompi.a
+
+
+
+include Makefile.common

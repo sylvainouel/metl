@@ -1,0 +1,56 @@
+#!/bin/bash
+#nojoin please PBS -j oe
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=00:05:00
+#PBS -m n
+#PBS -r n
+#PBS -o out-test38_100_5
+
+if [ -r "${PBS_NODEFILE}" ] ; then
+        NODES=$(sort -u ${PBS_NODEFILE} |wc -l | awk '{print $1}')
+        NP=$(wc -l ${PBS_NODEFILE} | awk '{print $1}')
+        PPN=$(( NP / NODES ))
+        NODEFILE=${PBS_O_WORKDIR}/${$}.tmp
+        sort -u ${PBS_NODEFILE} > ${NODEFILE}
+else
+        NODES=1
+        NP=1
+        PPN=1
+        NODEFILE=${$}.tmp
+        uname -n > ${NODEFILE}
+fi
+
+if [ "${PBS_ENVIRONMENT}" = "PBS_BATCH" ] ; then
+        cd ${PBS_O_WORKDIR}
+fi
+
+# Start of user script
+
+echo ""
+echo "#### running this :"
+echo "# OMP_NUM_THREADS=$PPN ../examples/cells2switch/my_problem ../problems/cells2switch/test38_100_5"
+echo "#### on this host :"
+echo "# hostname `hostname --fqdn`"
+echo "#### at this date and time :"
+echo "# `date`"
+echo "#### info"
+echo "# `uname -a`"
+echo "####"
+
+OMP_NUM_THREADS=$PPN ../examples/cells2switch/my_problem ../problems/cells2switch/test38_100_5
+
+if [ -r pgprof.out ]; then
+	mv pgprof.out out-${FILE/.dat/}/${PBS_JOBID}.pgprof.out
+fi
+if [ -r gmon.out ]; then
+	mv gmon.out out-${FILE/.dat/}/${PBS_JOBID}.gmon.out
+fi
+
+echo ""
+echo "#### end."
+
+# End of user script
+
+if [ ! -r "${PBS_NODEFILE}" ] ; then
+        rm -f ${NODEFILE}
+fi
